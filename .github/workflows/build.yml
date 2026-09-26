@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Existing git tag to publish this build as (e.g. v1.0)'
+        description: 'Existing git tag to publish this build as (e.g. v1.1)'
         required: true
         type: string
 
@@ -31,17 +31,17 @@ jobs:
     - name: Compile plugins
       run: |
         mkdir -p plugins
-        spcomp scripting/mge_stv_camfix.sp -o ./plugins/mge_stv_camfix.smx
-        test -s plugins/mge_stv_camfix.smx
+        spcomp scripting/stv_camfix.sp -o ./plugins/stv_camfix.smx
+        test -s plugins/stv_camfix.smx
         ls -la plugins/
 
     - name: Zip packages
       run: |
         mkdir build
-        7za a -r build/mge-stv-camfix.zip plugins/ gamedata/ scripting/
-        unzip -l build/mge-stv-camfix.zip
-        test "$(unzip -Z1 build/mge-stv-camfix.zip | grep -c '\.smx$')" -ge 1
-        test "$(unzip -Z1 build/mge-stv-camfix.zip | grep -c 'gamedata/mge_stv_camfix.txt')" -ge 1
+        7za a -r build/stv-camfix.zip plugins/ gamedata/ scripting/
+        unzip -l build/stv-camfix.zip
+        test "$(unzip -Z1 build/stv-camfix.zip | grep -c '\.smx$')" -ge 1
+        test "$(unzip -Z1 build/stv-camfix.zip | grep -c 'gamedata/stv_camfix.txt')" -ge 1
 
     - name: Release
       uses: softprops/action-gh-release@v1
@@ -49,6 +49,6 @@ jobs:
       with:
         tag_name: ${{ github.event.inputs.tag || github.ref_name }}
         files: |
-          ./build/mge-stv-camfix.zip
+          ./build/stv-camfix.zip
         fail_on_unmatched_files: true
         generate_release_notes: true

@@ -5,14 +5,14 @@
 #include <sdktools>
 #include <dhooks>
 
-#define GAMEDATA_FILE "mge_stv_camfix"
+#define GAMEDATA_FILE "stv_camfix"
 
 public Plugin myinfo =
 {
-	name = "MGE SourceTV Camera List Fix",
+	name = "SourceTV Camera List Fix",
 	author = "mge.tf",
 	description = "Rebuild CHLTVDirector camera pointers before AnalyzeCameras so a freed info_observer_point cannot hang srcds",
-	version = "1.0",
+	version = "1.1",
 	url = "https://mge.tf"
 };
 
@@ -43,9 +43,9 @@ public void OnPluginStart()
 		SetFailState("DynamicDetour.FromConf failed for CHLTVDirector::AnalyzeCameras");
 	}
 
-	g_cvClearEvents = CreateConVar("mge_stv_camfix_clear_events", "0", "Call RemoveEventsFromHistory(-1) after BuildCameraList", _, true, 0.0, true, 1.0);
-	RegServerCmd("mge_stv_camfix_rebuild", CmdRebuild);
-	RegServerCmd("mge_stv_camfix_arm", CmdArm);
+	g_cvClearEvents = CreateConVar("stv_camfix_clear_events", "0", "Call RemoveEventsFromHistory(-1) after BuildCameraList", _, true, 0.0, true, 1.0);
+	RegServerCmd("stv_camfix_rebuild", CmdRebuild);
+	RegServerCmd("stv_camfix_arm", CmdArm);
 
 	g_bMapActive = true;
 	CreateTimer(2.0, Timer_Arm, _, TIMER_FLAG_NO_MAPCHANGE);
