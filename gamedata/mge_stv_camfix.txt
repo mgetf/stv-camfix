@@ -1,0 +1,63 @@
+"Games"
+{
+	"tf"
+	{
+		"Keys"
+		{
+			"INTERFACEVERSION_HLTVDIRECTOR"	"HLTVDirector001"
+		}
+
+		"Offsets"
+		{
+			"CHLTVDirector::IHLTVDirector"
+			{
+				"linux"		"12"
+			}
+		}
+
+		"Signatures"
+		{
+			"HLTVDirector"
+			{
+				"library"	"server"
+				"linux"		"@_Z12HLTVDirectorv"
+			}
+
+			"CreateInterface"
+			{
+				"library"	"server"
+				"linux"		"@CreateInterface"
+			}
+
+			"CHLTVDirector::BuildCameraList"
+			{
+				"library"	"server"
+				"linux"		"@_ZN13CHLTVDirector15BuildCameraListEv"
+			}
+
+			"CHLTVDirector::RemoveEventsFromHistory"
+			{
+				"library"	"server"
+				"linux"		"@_ZN13CHLTVDirector23RemoveEventsFromHistoryEi"
+			}
+
+			"CHLTVDirector::AnalyzeCameras"
+			{
+				"library"	"server"
+				"linux"		"@_ZN13CHLTVDirector14AnalyzeCamerasEv"
+			}
+		}
+
+		"Functions"
+		{
+			"CHLTVDirector::AnalyzeCameras"
+			{
+				"signature"	"CHLTVDirector::AnalyzeCameras"
+				"callconv"	"thiscall"
+				"hooktype"	"raw"
+				"return"	"void"
+				"this"		"address"
+			}
+		}
+	}
+}
