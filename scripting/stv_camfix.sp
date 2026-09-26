@@ -6,6 +6,7 @@
 #include <dhooks>
 
 #define GAMEDATA_FILE "stv_camfix"
+#define PLUGIN_VERSION "1.2.1"
 #define MAX_FIXED_CAMERAS 64
 #define IFACE_OK 0
 #define POINTER_SIZE 4
@@ -13,9 +14,9 @@
 public Plugin myinfo =
 {
 	name = "SourceTV Camera List Fix",
-	author = "mge.tf",
+	author = "mge.tf (camera splice: Skull and Irineu)",
 	description = "Keep CHLTVDirector camera pointers valid when an observer camera is deleted",
-	version = "1.2",
+	version = PLUGIN_VERSION,
 	url = "https://mge.tf"
 };
 
@@ -67,8 +68,8 @@ public void OnPluginStart()
 
 	char map[128];
 	GetCurrentMap(map, sizeof(map));
-	LogError("[stvcamfix] ready v=1.2 map=%s director=%08x splice=%d detour=%d tv_enable=%d",
-		map, g_pDirector, canSplice ? 1 : 0, canDetour ? 1 : 0, TvEnable());
+	LogError("[stvcamfix] ready v=%s map=%s director=%08x splice=%d detour=%d tv_enable=%d",
+		PLUGIN_VERSION, map, g_pDirector, canSplice ? 1 : 0, canDetour ? 1 : 0, TvEnable());
 }
 
 public void OnMapStart()
@@ -180,6 +181,8 @@ static void RebuildCameraList()
 
 static void SpliceDestroyedCamera(int entity)
 {
+	// Compact m_pFixedCameras when a tracked camera is destroyed.
+	// Same approach as Crash Fixes by Skull and Irineu.
 	if (g_bRebuilding || !g_bMapActive || g_pDirector == Address_Null)
 	{
 		return;

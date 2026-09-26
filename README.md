@@ -19,3 +19,8 @@ Lines go to SourceMod `errors_*.log`. Grep `[stvcamfix]`.
 | `SAVED` | Removed a dying camera from the director list |
 | `REBUILT` | AnalyzeCameras rebuild changed the camera count |
 | `FAIL` | Detour did not arm |
+
+## Credits
+
+The live-map camera-list splice (compact `m_pFixedCameras` on `OnEntityDestroyed`, plus the Windows `CreateInterface` / offset layout) follows **Crash Fixes** by Skull and Irineu.
+
