@@ -11,7 +11,20 @@
 		{
 			"CHLTVDirector::IHLTVDirector"
 			{
+				"windows"	"12"
 				"linux"		"12"
+			}
+
+			"CHLTVDirector::m_nNumFixedCameras"
+			{
+				"windows"	"64"
+				"linux"		"64"
+			}
+
+			"CHLTVDirector::m_pFixedCameras"
+			{
+				"windows"	"68"
+				"linux"		"68"
 			}
 		}
 
@@ -26,6 +39,7 @@
 			"CreateInterface"
 			{
 				"library"	"server"
+				"windows"	"@CreateInterface"
 				"linux"		"@CreateInterface"
 			}
 
